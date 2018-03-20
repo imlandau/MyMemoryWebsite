@@ -1,0 +1,110 @@
+<html>
+<head>
+  <title>MyMemory Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="test.css" />
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>  
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-/jW88w4AK58qCyfTnqErGkTLcE+LoRhfbA68B00ca/AjGmFd+UG+fB6ryk6g6T9p" crossorigin="anonymous">
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="473904450980-4jtobkt6iv7ehmlh73s8oselg69vq4pu.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+          <a class="navbar-brand" href="login.html">My Memory Assistant</a>
+          
+
+          <div class="collapse navbar-collapse" id="navbarColor01">
+           
+             </div>
+        </nav>
+<body>
+ <div class="container">
+            <div class = "row">
+  
+                <div class = "col-md-4"></div>
+                <div class = "col-md-4">
+  <div id="login_div" class="main-div">
+    <h3>MyMemory Login</h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <a class="btn btn-primary" role="button" onclick="login()">Login to Account</a>
+<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+</div>
+
+  <div id="user_div" class="loggedin-div">
+    <h3>Welcome User</h3>
+    <p id="user_para">Welcome to MyMemory. You're currently logged in.</p>
+    <a class="btn btn-secondary" role="button" onclick="logout()">Logout</a>
+    <a class="btn btn-primary" href="home.html" role="button">Go to Home</a>
+    <a class="btn btn-secondary" role="button" onclick="signOut()">Sign Out Google</a>
+
+    
+  </div></div>
+<script>
+      function onSignIn(googleUser) {
+      if(gapi.auth2.getAuthInstance().isSignedIn.get()){
+           // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+        
+         document.getElementById("user_div").style.display = "block";
+    document.getElementById("login_div").style.display = "none";
+
+    var googleUser = firebase.auth().currentUser;
+             };
+      }
+     
+    </script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDEBKcey17N2rQ_Ien0MtUnlFhiVoKpT3I",
+      authDomain: "mymemory-f092f.firebaseapp.com",
+      databaseURL: "https://mymemory-f092f.firebaseio.com",
+      projectId: "mymemory-f092f",
+      storageBucket: "gs://mymemory-f092f.appspot.com",
+      messagingSenderId: "473904450980"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="index.js"></script>
+<script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+        
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+      });
+    }
+
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+</body>
+</html>
