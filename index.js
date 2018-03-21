@@ -10,7 +10,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     if(user != null){
 
       var email_id = user.email;
-      document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+      document.getElementById("user_para").innerHTML = "You are currently signed in as : " + email_id;
+      document.getElementById("name").innerHTML = "This is to see information:";
+
     }
 
   } else {
@@ -44,6 +46,8 @@ function login(){
 
  function signOut() {
    firebase.auth().signOut();
+    firebase.auth().signOut();
+
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
         console.log('User signed out.');
@@ -58,3 +62,17 @@ function login(){
       });
     }
     
+    
+    var First = document.getElementById("First")
+    var Last = document.getElementById("Last")
+    var DOB = document.getElementById("DOB")
+    var Phone = document.getElementById("Phone")
+    var Relationship = document.getElementById("Relationship")
+    
+    var firebaseRef = firebase.database().ref().child("Patients");
+    
+    firebaseRef.on('value', function(datasnapshot){
+    firebaseRef.innerText = datasnapshot.val();
+    });
+    
+  
