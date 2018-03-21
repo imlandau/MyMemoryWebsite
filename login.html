@@ -21,7 +21,13 @@
           
 
           <div class="collapse navbar-collapse" id="navbarColor01">
-           
+            <div id="nav_div">
+            <ul class="navbar-nav mr-auto">
+           <li class="nav-item active">
+                <a class="nav-link" onclick=signOut() href="login.html">Log Out</a>
+              </li>
+              </ul>
+              </div>
              </div>
         </nav>
 <body>
@@ -36,6 +42,7 @@
     <input type="password" placeholder="Password..." id="password_field" />
 
     <a class="btn btn-primary" role="button" onclick="login()">Login to Account</a>
+
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 </div>
 
@@ -43,12 +50,14 @@
     <h3>Welcome To MyMemory</h3>
     <p id="user_para"></p>
     <p id="check"></p>
-    <a class="btn btn-secondary" role="button" onclick="signOut()">Sign Out</a>
-    <a class="btn btn-primary" href="home.html" role="button">Go to Home</a>
     <div>
       <p></p>
       <p id="name"></p>
     </div>
+  <a class="btn btn-primary" href="home.html" role="button">Add New Person</a>
+  <a class="btn btn-secondary" role="button" onclick="signOut()">Log Out</a>
+
+
     
 
     
