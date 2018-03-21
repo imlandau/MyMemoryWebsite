@@ -5,6 +5,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("user_div").style.display = "block";
     document.getElementById("nav_div").style.display = "block";
     document.getElementById("login_div").style.display = "none";
+    document.getElementById("person_div").style.display = "none";
+
 
     var user = firebase.auth().currentUser;
 
@@ -22,6 +24,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
     document.getElementById("nav_div").style.display = "none";
+    document.getElementById("person_div").style.display = "none";
+
 
 
   }
@@ -45,7 +49,23 @@ function login(){
 
 }
 
+function addPerson(){
+    document.getElementById("login_div").style.display = "none";
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("person_div").style.display = "block";
 
+    document.getElementById("name").innerHTML = "This is to see information:";
+
+  
+}
+
+function home(){
+    document.getElementById("login_div").style.display = "none";
+    document.getElementById("user_div").style.display = "block";
+    document.getElementById("person_div").style.display = "none";
+
+  
+}
 
  function signOut() {
    firebase.auth().signOut();
@@ -57,6 +77,8 @@ function login(){
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
       document.getElementById("nav_div").style.display = "none";
+      document.getElementById("person_div").style.display = "none";
+
 
       });
     }
