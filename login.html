@@ -16,6 +16,7 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+   
           <a class="navbar-brand" href="login.html">My Memory Assistant</a>
           
 
@@ -41,13 +42,13 @@
   <div id="user_div" class="loggedin-div">
     <h3>Welcome User</h3>
     <p id="user_para">Welcome to MyMemory. You're currently logged in.</p>
-    <a class="btn btn-secondary" role="button" onclick="logout()">Logout</a>
+    <a class="btn btn-secondary" role="button" onclick="signOut()">Sign Out</a>
     <a class="btn btn-primary" href="home.html" role="button">Go to Home</a>
-    <a class="btn btn-secondary" role="button" onclick="signOut()">Sign Out Google</a>
 
     
   </div></div>
 <script>
+
       function onSignIn(googleUser) {
       if(gapi.auth2.getAuthInstance().isSignedIn.get()){
            // Useful data for your client-side scripts:
@@ -63,8 +64,8 @@
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
         
-         document.getElementById("user_div").style.display = "block";
-    document.getElementById("login_div").style.display = "none";
+       document.getElementById("user_div").style.display = "block";
+       document.getElementById("login_div").style.display = "none";
 
     var googleUser = firebase.auth().currentUser;
              };
@@ -87,23 +88,6 @@
     firebase.initializeApp(config);
   </script>
   <script src="index.js"></script>
-<script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-        
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
-      });
-    }
-
-    function onLoad() {
-      gapi.load('auth2', function() {
-        gapi.auth2.init();
-      });
-    }
-  </script>
 
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </body>

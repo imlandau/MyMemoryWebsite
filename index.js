@@ -11,6 +11,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       var email_id = user.email;
       document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
+      document.getElementById("user_para").innerHTML = "Welcome User : " + email_id;
       
     }
 
@@ -41,6 +42,22 @@ function login(){
 
 }
 
-function logout(){
-  firebase.auth().signOut();
-}
+
+
+ function signOut() {
+   firebase.auth().signOut();
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+      });
+    }
+
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+    
+    
