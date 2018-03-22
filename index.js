@@ -17,8 +17,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     document.getElementById("user_div").style.display = "block";
     document.getElementById("nav_div").style.display = "block";
+    document.getElementById("nav_div2").style.display = "block";
     document.getElementById("login_div").style.display = "none";
     document.getElementById("person_div").style.display = "none";
+
 
 
     var user = firebase.auth().currentUser;
@@ -37,9 +39,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     // No user is signed in.
 
     document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
     document.getElementById("nav_div").style.display = "none";
     document.getElementById("person_div").style.display = "none";
+    document.getElementById("nav_div2").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+
+
 
 
 
@@ -68,6 +73,8 @@ function addPerson(){
     document.getElementById("login_div").style.display = "none";
     document.getElementById("user_div").style.display = "none";
     document.getElementById("person_div").style.display = "block";
+    document.getElementById("nav_div2").style.display = "none";
+
 
     document.getElementById("name").innerHTML = "This is to see information:";
 
@@ -76,8 +83,10 @@ function addPerson(){
 
 function home(){
     document.getElementById("login_div").style.display = "none";
-    document.getElementById("user_div").style.display = "block";
     document.getElementById("person_div").style.display = "none";
+    document.getElementById("user_div").style.display = "block";
+    document.getElementById("nav_div2").style.display = "block";
+
 
   
 }
@@ -89,10 +98,11 @@ function home(){
       var auth2 = gapi.auth2.getAuthInstance();
       auth2.signOut().then(function () {
         console.log('User signed out.');
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
+      document.getElementById("user_div").style.display = "none";
       document.getElementById("nav_div").style.display = "none";
+      document.getElementById("nav_div2").style.display = "none";
       document.getElementById("person_div").style.display = "none";
+      document.getElementById("login_div").style.display = "block";
 
 
       });

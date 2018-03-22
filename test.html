@@ -24,16 +24,18 @@
     </div>
     <div id="nav_div2">
           <ul class="nav navbar-nav">
-       <li><a class="navbar-brand navbar-left" href="#" onclick=addPerson()>Add Person</a></li>
          <ul class="nav navbar-nav"></ul>
     </div>
           <div id="nav_div">
        <ul class="nav navbar-nav navbar-right">
-      <li><a class="navbar-brand navbar-right" href="#" onclick=signOut()>Sign Out</a></li>
+      <li><a class="navbar-brand navbar-right" href="login.html" onclick=signOut()>Sign Out</a></li>
     </ul>
     </ul>
   </div>
 </nav>
+
+
+
 
 <body>
   
@@ -44,45 +46,14 @@
                 <div class = "col-md-4">
   <div id="login_div" class="main-div">
     
-    <h3>MyMemory Login</h3>
-    
-    <input type="email" placeholder="Email..." id="email_field" />
-    <input type="password" placeholder="Password..." id="password_field" />
-
-    <div> <button class="btn btn-primary" onclick="login()">Login to Account</button> </div>
-
-<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 </div>
+  <div id="person_div" class="loggedin-div">
+   
+  </div>
 
   <div id="user_div" class="loggedin-div">
-    <h3>Welcome To MyMemory</h3>
-      <div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title"><p id="user_para"></p></span>
-          <p>DOB Holder</p>
-          <p>Relationship: Holder</p>
-          <p>Address: Holder</p>
-        </div>
-<div class="card-action">
-              <a href="#">Picture</a>
-              <a href="#">Picture</a>
-            </div>
-      </div>
-    </div>
-  </div>
-    
-    <p></p>
-  <button class="btn btn-primary" onclick="addPerson()">Add New Person</button>
-  <button class="btn btn-secondary" onclick="signOut()">Sign Out</button>
-</div>
-
-   <div id="person_div" class="loggedin-div">
+          <p id="user_para"></p>
     <h3>Add Person To MyMemory</h3>
-    
-<a href="test.html" class="btn btn-info" role="button">Test</a>
-
     <div class="form-group" >
     <label for="fname">First Name:</label>
     <input type="text" class="form-control" id="fname">
@@ -103,17 +74,15 @@
     <label for="address">Address:</label>
     <input type="address" class="form-control" id="address">
   </div>
- 
- 
+    
   <button type="submit" class="btn btn-primary">Add Person</button>
-     <button type="submit" class ="btn btn-primary">Clear Information</button>
-
-</form>
+  <button type="submit" class ="btn btn-primary">Clear Information</button>
 <p></p>
-  <button class="btn btn-primary" onclick="home()">Go Back</button>
-  <button class="btn btn-secondary" onclick="signOut()">Sign Out</button>
+<a href="login.html" class="btn btn-secondary" onclick=signOut() role="button">Sign Out</a>
 
-  </div></div>
+  </div>
+
+ </div>
   
 <script>
 
