@@ -14,34 +14,38 @@
         <meta name="google-signin-scope" content="profile email">
         <meta name="google-signin-client_id" content="473904450980-4jtobkt6iv7ehmlh73s8oselg69vq4pu.apps.googleusercontent.com">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
+        
 </head>
- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-   
-          <a class="navbar-brand" href="login.html">My Memory Assistant</a>
-          
 
-          <div class="collapse navbar-collapse" id="navbarColor01">
-            <div id="nav_div">
-            <ul class="navbar-nav mr-auto">
-           <li class="nav-item active">
-                <a class="nav-link" onclick=signOut() href="login.html">Log Out</a>
-              </li>
-              </ul>
-              </div>
-             </div>
-        </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="login.html">My Memory Assistant</a>
+      </div>
+          <div id="nav_div">
+    <ul class="nav navbar-nav">
+      <li><a class="navbar-brand navbar-right" href="#" onclick=signOut()>Sign Out</a></li>
+    <ul class="nav navbar-nav navbar-right">
+    </ul>
+    </ul>
+  </div>
+</nav>
+
 <body>
+  
  <div class="container">
             <div class = "row">
   
                 <div class = "col-md-4"></div>
                 <div class = "col-md-4">
   <div id="login_div" class="main-div">
+    
     <h3>MyMemory Login</h3>
+    
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
-    <a class="btn btn-primary" role="button" onclick="login()">Login to Account</a>
+    <button class="btn btn-primary" onclick="login()">Login to Account</button>
 
 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 </div>
@@ -54,8 +58,8 @@
       <p></p>
       <p id="name"></p>
     </div>
-  <a class="btn btn-primary" role="button" onclick="addPerson()">Add New Person</a>
-  <a class="btn btn-secondary" role="button" onclick="signOut()">Log Out</a>
+  <button class="btn btn-primary" onclick="addPerson()">Add New Person</button>
+  <button class="btn btn-secondary" onclick="signOut()">Sign Out</button>
 
   </div>
 
@@ -89,8 +93,8 @@
 
 </form>
 <p></p>
-  <a class="btn btn-primary" role="button" onclick="home()">Go Back</a>
-  <a class="btn btn-secondary" role="button" onclick="signOut()">Log Out</a>
+  <button class="btn btn-primary" onclick="home()">Go Back</button>
+  <button class="btn btn-secondary" onclick="signOut()">Sign Out</button>
 
   </div></div>
   

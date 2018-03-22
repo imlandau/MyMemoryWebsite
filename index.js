@@ -1,3 +1,16 @@
+var First = document.getElementById("First")
+    var Last = document.getElementById("Last")
+    var DOB = document.getElementById("DOB")
+    var Phone = document.getElementById("Phone")
+    var Relationship = document.getElementById("Relationship")
+    
+    var firebaseRef = firebase.database().ref().child("Patients");
+    
+    firebaseRef.on('value', function(datasnapshot){
+    firebaseRef.innerText = datasnapshot.val();
+    });
+
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
@@ -15,6 +28,8 @@ firebase.auth().onAuthStateChanged(function(user) {
       var email_id = user.email;
       document.getElementById("user_para").innerHTML = "You are currently signed in as : " + email_id;
       document.getElementById("name").innerHTML = "This is to see information:";
+      document.getElementById("check").innerHTML = "First Name : " + First;
+
 
     }
 
@@ -90,16 +105,4 @@ function home(){
     }
     
     
-    var First = document.getElementById("First")
-    var Last = document.getElementById("Last")
-    var DOB = document.getElementById("DOB")
-    var Phone = document.getElementById("Phone")
-    var Relationship = document.getElementById("Relationship")
     
-    var firebaseRef = firebase.database().ref().child("Patients");
-    
-    firebaseRef.on('value', function(datasnapshot){
-    firebaseRef.innerText = datasnapshot.val();
-    });
-    
-  
