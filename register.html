@@ -43,7 +43,7 @@
    <h2 style="text-align:center">Register Information into MyMemoryAssistant</h2>
 
    
-   <form action="javascript:addPatient();">
+   <form id="addPersonForm">
        
   <div class="form-group" >
     <label for="fname">First Name:</label>
@@ -81,13 +81,15 @@
    
     </div>
     <div class = "col-md-4"></div>
-</div>
+  </div>
     </form>
     
     
     
     <!-- Script to initialize Firebase connection -->
+
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<!--    
     <script>
       // Initialize Firebase
       var config = {
@@ -102,25 +104,8 @@
       
       var database = firebase.database();
       
-      // Function to add patient info to database
-      function addPatient() {
-        var data = {
-          fname: document.getElementById("fname");
-          lname: document.getElementById("lname");
-          relationship: document.getElementById("relationship");
-          DOB: document.getElementById("DOB");
-          address: document.getElementById("address");
-        }
-        console.log(data);
-        var ref = database.ref('Patients');
-        ref.push(data);
-      }
-        
-    
-      
-      
     </script>
-    
+-->
     
     <!-- Required Bootstrap scripts -->
     
@@ -130,7 +115,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
-    
+    <!-- Reference the submission script -->
+    <script src="submit.js"></script>
 
 
     

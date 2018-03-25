@@ -5,7 +5,7 @@ var First = document.getElementById("First")
     var Relationship = document.getElementById("Relationship")
     
     var firebaseRef = firebase.database().ref().child("Patients");
-    
+    var uid = firebase.auth().currentUser.uid;
     firebaseRef.on('value', function(datasnapshot){
     firebaseRef.innerText = datasnapshot.val();
     });
@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if(user != null){
 
       var email_id = user.email;
-      document.getElementById("user_para").innerHTML = "You are currently signed in as : " + email_id;
+      document.getElementById("user_para").innerHTML = "You are currently signed in as test: " + uid + email_id;
       document.getElementById("name").innerHTML = "This is to see information:";
       document.getElementById("check").innerHTML = "First Name : " + First;
 
