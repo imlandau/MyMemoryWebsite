@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lange="en">
+    <head>
+        <title>MyMemory Assistant</title>
+        <meta charset="UTF-8">
+          <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-/jW88w4AK58qCyfTnqErGkTLcE+LoRhfbA68B00ca/AjGmFd+UG+fB6ryk6g6T9p" crossorigin="anonymous">
+        
+        <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+        
+    </head>
+    
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDEBKcey17N2rQ_Ien0MtUnlFhiVoKpT3I",
+    authDomain: "mymemory-f092f.firebaseapp.com",
+    databaseURL: "https://mymemory-f092f.firebaseio.com",
+    projectId: "mymemory-f092f",
+    storageBucket: "mymemory-f092f.appspot.com",
+    messagingSenderId: "473904450980"
+  };
+  firebase.initializeApp(config);
+    </script>
+    <script>
+
+         firebase.auth().onAuthStateChanged(function(user) {
+             if (user) {
+                 
+                   var uid = firebase.auth().currentUser.uid;
+                   //firebase.database().ref('Patients').child(uid).child('family').once('value').then(function(snapshot) {
+                  firebase.database().ref('Patients').child(uid).once('value').then(function(snapshot) {
+                  var val = snapshot.val();
+                  console.log(val);
+                  var firstName = snapshot.child("firstName").val();
+                  var lastName = snapshot.child("lastName").val();
+                  document.getElementById("user").innerHTML = '<h2>You are currently using ' + firstName + ' ' + lastName + "'"+'s account</h2>' 
+                  + '</h3><br><h4>This is their last known location<br></h4><h5>(If turned on)</h5><p></p>';
+                 
+                  // ...
+                });
+                
+             }
+             else {
+                 console.log("no user signed in");
+             }
+         });
+    </script>
+    
+    <div></div>
+       <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="https://mymemorywebsite-imlandau.c9users.io">My Memory Assistant</a>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="loggedin.html">MyMemory Assistant<span></span></a>
+              </li>
+              <ul class="nav navbar-nav navbar-left mr-auto">
+                        <a class="nav-link" href="register.html">Add Person</a>
+                    </div>
+                </ul>
+            </ul>
+            <ul class="nav navbar-nav navbar-right mr-auto">
+                        <a id="signOut" class="nav-link" href="https://mymemorywebsite-imlandau.c9users.io">Sign Out</a>
+                    </div>
+                </ul>
+      
+        </nav>
+        
+        <div class="container" id="loginarea">
+            
+        <div class="row">
+            
+            <div align="center" class="col-lg-12">
+            
+            <div align="center" class="card" style="width:400px">
+              <div class="card-body">
+                <h4 id="user" class="card-title"></h4>
+                <p id="email" class="card-text"></p>
+                 <div id="map"></div>
+    <script>
+      function initMap() {
+           firebase.auth().onAuthStateChanged(function(user) {
+          var uid = firebase.auth().currentUser.uid;
+                   //firebase.database().ref('Patients').child(uid).child('family').once('value').then(function(snapshot) {
+                  firebase.database().ref('Patients').child(uid).once('value').then(function(snapshot) {
+                  var val = snapshot.val();
+         var long = snapshot.child("Last Location").child("longitude").val();
+         var  lat = snapshot.child("Last Location").child("latitude").val();
+        var uluru = {lat: lat, lng: long};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+                  });
+      
+           });
+           }
+      
+      
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3pdp5ZrqT9HTfNPQYjXOWhjAAzkKbBFc&callback=initMap">    </script>
+             <p></p><p></p>
+              <button class="btn btn-primary" id="addPerson">Add Person</button>
+              </div>
+            </div>
+            </div>
+          
+
+<script>
+document.getElementById('signOut').addEventListener('click', function(event) {
+  firebase.auth().signOut();
+  window.location.replace("https://mymemorywebsite-imlandau.c9users.io/");
+});
+</script>
+
+<script>
+document.getElementById('addPerson').addEventListener('click', function(event) {
+  window.location.replace("https://mymemorywebsite-imlandau.c9users.io/register.html");
+});
+</script>
+       
+   <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
+  </body>
+</html>
