@@ -1,51 +1,111 @@
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-/jW88w4AK58qCyfTnqErGkTLcE+LoRhfbA68B00ca/AjGmFd+UG+fB6ryk6g6T9p" crossorigin="anonymous">
+<head>
+  <title>MyMemory Login</title>
+  <title>MyMemory Assistant</title>
+        <meta charset="UTF-8">
+          <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-/jW88w4AK58qCyfTnqErGkTLcE+LoRhfbA68B00ca/AjGmFd+UG+fB6ryk6g6T9p" crossorigin="anonymous">
         
-    </head>
-    <body>
+</head>
+    
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script>
+    
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDEBKcey17N2rQ_Ien0MtUnlFhiVoKpT3I",
+    authDomain: "mymemory-f092f.firebaseapp.com",
+    databaseURL: "https://mymemory-f092f.firebaseio.com",
+    projectId: "mymemory-f092f",
+    storageBucket: "mymemory-f092f.appspot.com",
+    messagingSenderId: "473904450980"
+  };
+  firebase.initializeApp(config);
   
+    </script>
+    <script>
+         firebase.auth().onAuthStateChanged(function(user) {
+             if (user) {
+                 
+                   var uid = firebase.auth().currentUser.uid;
+                   //firebase.database().ref('Patients').child(uid).child('family').once('value').then(function(snapshot) {
+                  firebase.database().ref('Patients').child(uid).once('value').then(function(snapshot) {
+                 var val = snapshot.val();
+                  var firstName = snapshot.child("firstName").val();
+                  var lastName = snapshot.child("lastName").val();
+                  document.getElementById("email").innerHTML = '<h3>You are currently using ' + firstName + ' ' + lastName + "'"+'s account';
+                 
+                 var personRef = firebase.database().ref('Patients').child(uid).child('family');
+
+  
+
+                  // ...
+                });
+                
+             }
+             else {
+                 console.log("no user signed in");
+             }
+         });
+    </script>
+    
+
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand" href="home.html">My Memory Assistant</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-        
-          <div class="collapse navbar-collapse" id="navbarColor01">
+            <a class="navbar-brand" href="https://mymemorywebsite-imlandau.c9users.io">My Memory Assistant</a>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="home.html">Home</a>
-              </li>
               <li class="nav-item active">
-                <a class="nav-link" href="register.html">Register<span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="reminder.html">Reminder</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login.html">Logout</a>
+                <a class="nav-link" href="loggedin.html">MyMemory Assistant<span></span></a>
               </li>
             </ul>
-              </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                        <a id="signOut" class="nav-link" href="https://mymemorywebsite-imlandau.c9users.io">Sign Out</a>
+                    </div>
+                </ul>
+      
         </nav>
-  
-  
-    
-        <div class="container">
-        
-        
-        <form>
-             <div class = "row">
-  
-  <div class = "col-md-4"></div>
-<div class = "col-md-4">
-   <h2 style="text-align:center">Register Information into MyMemoryAssistant</h2>
 
+
+
+<body>
+  
+ <div class="container">
+            <div class = "row">
+  
+                <div class = "col-md-4"></div>
+                <div class = "col-md-4">
+  <div id="login_div" class="main-div">
+    
+</div>
+  <div id="person_div" class="loggedin-div">
    
-   <form id="addPersonForm">
-       
-  <div class="form-group" >
+  </div>
+
+  <div align="center" class="loggedin-div">
+      <div class="row">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title"><p id="email"></p></span>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+    <p>
+    </p>
+    <p></p>
+    <div align="center">
+    <h3>Add Person To MyMemory</h3>
+    
+    <form id="addPersonForm">
+      
+    <div class="form-group" >
     <label for="fname">First Name:</label>
     <input type="text" class="form-control" id="fname">
   </div>
@@ -66,59 +126,24 @@
     <input type="address" class="form-control" id="address">
   </div>
   <div class="form-group">
-    <label for="pictures">Add Pictures:</label>
-    <input type="image" class="form-control" id="pictures">
+    <label for="phone">Phone:</label>
+    <input type="tel" class="form-control" id="phone">
   </div>
- 
+    </div>
+    
+  <button type="submit" class ="btn btn-secondary">Clear Information</button>
   <button type="submit" class="btn btn-primary">Add Person</button>
-     <button type="submit" class ="btn btn-primary">Clear Information</button>
+
+<p></p>
 
 </form>
-   
-   
-   
-   
-   
-    </div>
-    <div class = "col-md-4"></div>
-  </div>
-    </form>
-    
-    
-    
-    <!-- Script to initialize Firebase connection -->
 
-    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-<!--    
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyDEBKcey17N2rQ_Ien0MtUnlFhiVoKpT3I",
-        authDomain: "mymemory-f092f.firebaseapp.com",
-        databaseURL: "https://mymemory-f092f.firebaseio.com",
-        projectId: "mymemory-f092f",
-        storageBucket: "mymemory-f092f.appspot.com",
-        messagingSenderId: "473904450980"
-      };
-      firebase.initializeApp(config);
-      
-      var database = firebase.database();
-      
-    </script>
--->
-    
-    <!-- Required Bootstrap scripts -->
-    
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
-    <!-- Reference the submission script -->
-    <script src="submit.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
+  <script src="submit.js"></script>
+  
 
-    
-  </body>
+  
+  
+</body>
 </html>

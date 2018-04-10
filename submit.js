@@ -1,17 +1,11 @@
-// Initialize Firebase (ADD YOUR OWN DATA)
 
-  var config = {
-    apiKey: "AIzaSyDEBKcey17N2rQ_Ien0MtUnlFhiVoKpT3I",
-    authDomain: "mymemory-f092f.firebaseapp.com",
-    databaseURL: "https://mymemory-f092f.firebaseio.com",
-    projectId: "mymemory-f092f",
-    storageBucket: "mymemory-f092f.appspot.com",
-    messagingSenderId: "473904450980"
-  };
-  firebase.initializeApp(config);
+// FIREBASE IS ALREADY INSTANTIATED IN REGISTER.HTML
 
 // Reference messages collection
-var personRef = firebase.database().ref('Patients');
+//var uid = firebase.auth().currentUser.uid;
+//var personRef = firebase.database().ref('Patients').child(uid).child('family');
+  
+//var personRef = firebase.database().ref('Patients');
 
 // Listen for form submit
 document.getElementById('addPersonForm').addEventListener('submit', submitForm);
@@ -26,19 +20,20 @@ function submitForm(e){
   var relationship = getInputVal('relationship');
   var dob = getInputVal('DOB');
   var address = getInputVal('address');
+  var phone = getInputVal('phone');
   
-  console.log(fname, lname, relationship, dob, address);
+  console.log(fname, lname, relationship, dob, address, phone);
 
   // Save person
-  savePerson(fname, lname, relationship, dob, address);
+  savePerson(fname, lname, relationship, dob, address, phone);
 
-  // Show alert
+ /* // Show alert
   document.querySelector('.alert').style.display = 'block';
 
   // Hide alert after 3 seconds
   setTimeout(function(){
     document.querySelector('.alert').style.display = 'none';
-  },3000);
+  },3000); */
 
   // Clear form
   document.getElementById('addPersonForm').reset();
@@ -50,13 +45,18 @@ function getInputVal(id){
 }
 
 // Save message to firebase
-function savePerson(fname, lname, relationship, dob, address){
+function savePerson(fname, lname, relationship, dob, address, phone){
+  
+  var uid = firebase.auth().currentUser.uid;
+  var personRef = firebase.database().ref('Patients').child(uid).child('family');
+  
   var newPersonRef = personRef.push();
   newPersonRef.set({
-    fname:fname,
-    lname:lname,
-    relationship:relationship,
+    firstName:fname,
+    lastName:lname,
+    relation:relationship,
     dob:dob,
-    address:address
+    mail:address,
+    phone:phone
   });
 }
